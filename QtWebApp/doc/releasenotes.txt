@@ -1,6 +1,12 @@
 Don't forget to update the release number also in
 QtWebApp.pro and httpserver/httpglobal.cpp.
 
+1.9.1
+14.11.2024
+Improve performance and memory usage when iterating over connection handler pool.
+Also fixed a seldom race condition in connection handler pool (malloc(): unsorted
+double linked list corrupted).
+
 1.9.0
 07.09.2023
 Some methods return now const references instead of objects to improve

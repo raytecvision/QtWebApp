@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
     QCoreApplication app(argc, argv);
     app.setApplicationName("Demo2");
 
-    // Collect hardcoded configarion settings
+    // Collect hardcoded configuration settings
     QSettings* settings=new QSettings(&app);
     // settings->setValue("host","192.168.0.100");
     settings->setValue("port","8080");

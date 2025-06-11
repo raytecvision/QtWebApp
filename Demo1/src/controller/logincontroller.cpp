@@ -4,7 +4,6 @@
 */
 
 #include <QDateTime>
-#include "../global.h"
 #include "logincontroller.h"
 
 LoginController::LoginController()
