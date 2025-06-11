@@ -573,3 +573,26 @@ DISTFILES += mainpage.dox Doxyfile ../CHANGELOG.txt ../LICENSE.txt ../README.txt
 include(logging/logging.pri)
 include(httpserver/httpserver.pri)
 include(templateengine/templateengine.pri)
+
+# MAKE INSTALL
+
+unix:!macx: {
+        headers.path=/opt/raytec/dev/include/qtwebapp
+        headers.files=$$HEADERS
+        target.path =/opt/raytec/dev/lib
+        INSTALLS += headers target
+}
+
+INSTALL_FOLDER						= Raytec-Dev-3
+msvc: COMPILER						= msvc
+gcc: COMPILER						= mingw
+contains(QT_ARCH, i386):	ARCH	= x86
+else:				ARCH	= x64
+
+win32 {
+        headers.path	= "C:\\$$INSTALL_FOLDER\\$$COMPILER\\$$ARCH\\$$QT_VERSION\\QtWebApp\\include"
+        headers.files	= $$HEADERS
+        CONFIG(debug, debug|release):	target.path	= "C:\\$$INSTALL_FOLDER\\$$COMPILER\\$$ARCH\\$$QT_VERSION\\QtWebApp\\lib\\debug"
+        CONFIG(release, debug|release):	target.path	= "C:\\$$INSTALL_FOLDER\\$$COMPILER\\$$ARCH\\$$QT_VERSION\\QtWebApp\\lib\\release"
+        INSTALLS += headers target
+}
