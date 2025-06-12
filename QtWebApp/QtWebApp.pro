@@ -8,9 +8,10 @@ QT -= gui
 mac {
    QMAKE_MAC_SDK = macosx10.10
    QMAKE_CXXFLAGS += -std=c++11
-   CONFIG += c++11
    QMAKE_LFLAGS_SONAME  = -Wl,-install_name,/usr/local/lib/
 }
+
+CONFIG += c++11
 
 win32 {
    DEFINES += QTWEBAPPLIB_EXPORT
@@ -583,16 +584,26 @@ unix:!macx: {
         INSTALLS += headers target
 }
 
-INSTALL_FOLDER						= Raytec-Dev-3
-msvc: COMPILER						= msvc
-gcc: COMPILER						= mingw
-contains(QT_ARCH, i386):	ARCH	= x86
-else:				ARCH	= x64
 
 win32 {
+        INSTALL_FOLDER						= Raytec-Dev-3
+        msvc: COMPILER						= msvc
+        gcc: COMPILER						= mingw
+        contains(QT_ARCH, i386):	ARCH	= x86
+        else:				ARCH	= x64
+
+    msvc: {
         headers.path	= "C:\\$$INSTALL_FOLDER\\$$COMPILER\\$$ARCH\\$$QT_VERSION\\QtWebApp\\include"
         headers.files	= $$HEADERS
         CONFIG(debug, debug|release):	target.path	= "C:\\$$INSTALL_FOLDER\\$$COMPILER\\$$ARCH\\$$QT_VERSION\\QtWebApp\\lib\\debug"
         CONFIG(release, debug|release):	target.path	= "C:\\$$INSTALL_FOLDER\\$$COMPILER\\$$ARCH\\$$QT_VERSION\\QtWebApp\\lib\\release"
         INSTALLS += headers target
+    }
+    else: {
+        headers.path	= "C:\\$$INSTALL_FOLDER\\$$COMPILER\\$$ARCH\\$$QT_VERSION\\QtWebApp\\include"
+        headers.files	= $$HEADERS
+        CONFIG(debug, debug|release):	target.path	= "C:\\$$INSTALL_FOLDER\\$$COMPILER\\$$ARCH\\$$QT_VERSION\\QtWebApp\\bin\\debug"
+        CONFIG(release, debug|release):	target.path	= "C:\\$$INSTALL_FOLDER\\$$COMPILER\\$$ARCH\\$$QT_VERSION\\QtWebApp\\bin\\release"
+        INSTALLS += headers target
+    }
 }
