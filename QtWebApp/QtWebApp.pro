@@ -592,18 +592,9 @@ win32 {
         contains(QT_ARCH, i386):	ARCH	= x86
         else:				ARCH	= x64
 
-    msvc: {
         headers.path	= "C:\\$$INSTALL_FOLDER\\$$COMPILER\\$$ARCH\\$$QT_VERSION\\QtWebApp\\include"
         headers.files	= $$HEADERS
-        CONFIG(debug, debug|release):	target.path	= "C:\\$$INSTALL_FOLDER\\$$COMPILER\\$$ARCH\\$$QT_VERSION\\QtWebApp\\lib\\debug"
-        CONFIG(release, debug|release):	target.path	= "C:\\$$INSTALL_FOLDER\\$$COMPILER\\$$ARCH\\$$QT_VERSION\\QtWebApp\\lib\\release"
+        CONFIG(debug, debug|release):	target.path	= "C:\\$$INSTALL_FOLDER\\$$COMPILER\\$$ARCH\\$$QT_VERSION\\QtWebApp\\lib"
+        CONFIG(release, debug|release):	target.path	= "C:\\$$INSTALL_FOLDER\\$$COMPILER\\$$ARCH\\$$QT_VERSION\\QtWebApp\\lib"
         INSTALLS += headers target
-    }
-    else: {
-        headers.path	= "C:\\$$INSTALL_FOLDER\\$$COMPILER\\$$ARCH\\$$QT_VERSION\\QtWebApp\\include"
-        headers.files	= $$HEADERS
-        CONFIG(debug, debug|release):	target.path	= "C:\\$$INSTALL_FOLDER\\$$COMPILER\\$$ARCH\\$$QT_VERSION\\QtWebApp\\bin\\debug"
-        CONFIG(release, debug|release):	target.path	= "C:\\$$INSTALL_FOLDER\\$$COMPILER\\$$ARCH\\$$QT_VERSION\\QtWebApp\\bin\\release"
-        INSTALLS += headers target
-    }
 }
