@@ -21,8 +21,5 @@ echo ${project_name}
 build_path=build-${project_name}-Desktop-${make_tag}
 
 cd ..
-mkdir -p ${build_path}
 cd ${build_path}
-qmake ../${project_name}/${project_name}.pro -r -spec linux-g++ ${make_arguments}
-make clean
-make -j8
+make install
